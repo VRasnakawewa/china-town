@@ -11,3 +11,28 @@
 .sign-in {
   float: right;
 }
+
+.sign-up {
+  float: right;
+}
+
+.appBackground {
+    position: relative;
+    background-image: url("chinatown.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+.body{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background-image: url(chinatown.jpg);
+	background-size: cover;
+	-webkit-filter: blur(5px);
+	z-index: 0;
+}
