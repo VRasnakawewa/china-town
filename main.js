@@ -1,4 +1,7 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron');
+
+/* Keep reference to the window object */
+let win;
 
 /**
  * Create browser window and load a html page
@@ -13,4 +16,13 @@ function createWindow () {
     });
 }
 
-app.on('ready', createWindow)
+app.on('ready', createWindow);
+
+/* Print everything just for now!!! */
+ipcMain.on('username', function(e, arg) {
+    console.log(arg);
+});
+
+ipcMain.on('password', function(e, arg) {
+    console.log(arg);
+});
