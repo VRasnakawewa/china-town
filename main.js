@@ -4,7 +4,6 @@ const path = require('path');
 
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 
-/* Keep reference to the window object */
 let mainWindow;
 
 //listen for the app to be ready
@@ -27,6 +26,22 @@ app.on('ready', function () {
     //insert menu
     Menu.setApplicationMenu(mainMenu);
 })
+
+//Handle create bill window
+function createBillWindow() {
+    //create new window
+    billWindow = new BrowserWindow({
+        width: 300,
+        height: 200,
+        title: 'ChinaTown'
+    });
+    //load html into window
+    billWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'billWindow.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+}
 
 // create menu Template
 const mainMenuTemplate = [
