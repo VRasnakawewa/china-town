@@ -59,4 +59,43 @@ const mainMenuTemplate = [
     }
 ];
 
+ var mysql = require('mysql');
+ var connection = mysql.createConnection({
+    host : 'localhost',
+    user : 'root',
+    database : 'chinatown'
+ });
+
+connection.connect(); 
+ 
+function loadmainWindow(){    
+}
+ 
+function authenticate(username, password) {
+   
+    
+    connection.query('SELECT * FROM users', function(error, results, fields) {
+        let i;
+        for(i = 0; i < results.length; i++){
+            let rs = results[i];
+            
+            if(rs.username === username && rs.password === password){
+                loadmainWindow();
+                //connection.end();
+                return;
+            } 
+        }
+        console.log('incorrect credentials');
+        //connection.end();
+    });
+}
+
+ipcMain.on('username', function(event, arg) {
+    let username = arg;
+    ipcMain.on('password', function(event, arg) {
+        let password = arg;
+        
+        authenticate(username, password);
+    });
+});
 
